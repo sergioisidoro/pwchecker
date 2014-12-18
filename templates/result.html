@@ -23,14 +23,17 @@
           <div class="pwd_area">
             <h1>Here is your result</h1>
             <p class="lead">
-              Password Entropy: {{entropy_value}}
+              Password Entropy: {{entropy}} -- {{label}}
             </p>
             <p class="lead">
-              This means your password wold need {{tries}} in a brute force attack to be breached
+              This means your password wold need {{brute}} tries (worst case) in a brute force attack to be breached
             </p>
 
             <p>
-              Based on 
+              This assumes that a brute force attacker doesn't know your character set, and first tries simpler passwords first
+            </p>
+            <p>
+              Read more about password entropy here: <a href="http://en.wikipedia.org/wiki/Password_strength#Entropy_as_a_measure_of_password_strength"> Wiki: Entropy as a measure of password strength</a>
             </p>
           </div>
     </div>
