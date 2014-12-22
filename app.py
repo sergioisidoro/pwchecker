@@ -1,10 +1,13 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, request
 from utils.Entropy import password_entropy
-import math
 
 magicKey = 'this_IS_a_53cret_key_you_should_change'
 
-app = Flask(__name__, static_folder='./static', static_url_path='/assets', template_folder='templates')
+app = Flask(
+    __name__,
+    static_folder='./static',
+    static_url_path='/assets',
+    template_folder='templates')
 
 app.secret_key = magicKey
 app.debug = True
@@ -22,17 +25,15 @@ def hello():
         if entropy < 112:
             if entropy < 80:
                 if entropy < 64:
-                    label="VERY WEAK"
+                    label = "VERY WEAK"
                 else:
-                    label="Weak"
+                    label = "Weak"
             else:
-                label="Moderate"
+                label = "Moderate"
         else:
-            label="Strong"
+            label = "Strong"
     else:
-        label="VERY STRONG"
-
-
+        label = "VERY STRONG"
     return render_template("result.html", **locals())
 
 # APP LAUNCHING:

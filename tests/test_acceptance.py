@@ -1,29 +1,21 @@
 
-from pwcheck.utils.Entropy import checklist, password_entropy
-
-import os
-import sys
-import inspect
-
-##HACK
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0, parentdir)
+from pwcheck.utils.Entropy import checklist
 
 import pytest
 
+
 class TestCharacterSetDetection:
-    ## Strings used with edge cases: 0 and 9, a and z etc 
+    ## Strings used with edge cases: 0 and 9, a and z etc
     def setup_method(self, method):
         pass
 
     def teardown_method(self, method):
-    	pass 
+        pass
 
     def test_lower(self):
         lower_password = "abcdefgz"
-    	check = checklist(lower_password)
-    	assert check["lower"] is True and check["capital"] is False and check["numbers"] is False and check["special"] is False
+        check = checklist(lower_password)
+        assert check["lower"] is True and check["capital"] is False and check["numbers"] is False and check["special"] is False
 
     def test_upper(self):
         upper_password = "ABCDEFGZ"
@@ -54,11 +46,6 @@ class TestCharacterSetDetection:
         numbers_lower_upper_password = "a1B2c3D4e5"
         check = checklist(numbers_lower_upper_password)
         assert check["lower"] is True and check["capital"] is True and check["numbers"] is True and check["special"] is False
-        
+
 
     ## TO DO - CHECK FOR SPECIAL CHARACTERS
-
-
-    # TO DO: ASSERT NON RASING OF EXCEPTION WHEN DEPARMENT NAME IS REPEATED - 
-    # MULTIPLE DEPARMENTS CAN EXIST WITH THE SAME NAME IN DIFFERENT INSTITUTIONS
-
